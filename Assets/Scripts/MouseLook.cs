@@ -4,6 +4,8 @@
 [AddComponentMenu("Camera/Simple Smooth Mouse Look ")]
 public class MouseLook : MonoBehaviour
 {
+    private enum Modifiers { None = 0, LeftShift = KeyCode.LeftShift, LeftControl = KeyCode.LeftControl }
+    [SerializeField] private Modifiers modifierKey;
     Vector2 _mouseAbsolute;
     Vector2 _smoothMouse;
 
@@ -32,7 +34,9 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
-	#if UNITY_EDITOR
+#if UNITY_EDITOR
+        if (Input.GetKey((KeyCode)modifierKey) || (!Input.anyKey && modifierKey == Modifiers.None))
+        {
             // Ensure the cursor is always locked when set
             if (lockCursor)
             {
@@ -77,7 +81,7 @@ public class MouseLook : MonoBehaviour
                 var yRotation = Quaternion.AngleAxis(_mouseAbsolute.x, transform.InverseTransformDirection(Vector3.up));
                 transform.localRotation *= yRotation;
             }
-
+        }
     #endif
     }
 }
