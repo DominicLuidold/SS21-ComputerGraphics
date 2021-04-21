@@ -27,7 +27,10 @@ public class SimpleGrab : MonoBehaviour
 #endif
         {
             transform.parent = destination;
-            rigidBody.useGravity = false;
+            if(rigidBody != null)
+            {
+                rigidBody.useGravity = false;
+            }
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, Mathf.Clamp(transform.localPosition.z + 0.005f * input.y, 0.3f, 10));
 
             if (Input.GetKey(KeyCode.C))
@@ -42,7 +45,10 @@ public class SimpleGrab : MonoBehaviour
         else
         {
             transform.parent = null;
-            rigidBody.useGravity = true;
+            if(rigidBody != null)
+            {
+                rigidBody.useGravity = true; //for dropping the rigidBody when needed
+            }
         }
     }
 
