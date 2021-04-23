@@ -13,8 +13,6 @@ public class PuzzlePartTrigger : MonoBehaviour
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody>();
-        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
-
     }
 
     void Update()
@@ -91,7 +89,7 @@ public class PuzzlePartTrigger : MonoBehaviour
 
             if(!lookAt && !_solved)
             {
-                puzzleHandler.partSolved(other);
+                puzzleHandler.PartSolved(other);
                 _solved = true;
                 Destroy(this.gameObject);
             }

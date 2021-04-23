@@ -37,7 +37,7 @@ public class PuzzleHandler : MonoBehaviour
 
     }
 
-    public void partSolved(Collider part)
+    public void PartSolved(Collider part)
     {
         MeshRenderer meshRenderer = part.GetComponent<MeshRenderer>();
         switch(part.name)
@@ -65,30 +65,5 @@ public class PuzzleHandler : MonoBehaviour
             Destroy(this.gameObject);
         }
         
-    }
-
-    public void AortaSolved()
-    {
-
-    }
-
-    public void LeftChamberSolved()
-    {
-
-    }
-
-    public void LungArteriaSolved()
-    {
-
-    }
-
-    public void RightChamberSolved()
-    {
-
-    }
-
-    public void PartSolved()
-    {
-
     }
 }
