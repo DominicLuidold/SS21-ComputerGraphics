@@ -7,19 +7,16 @@ namespace VrGrabber
         public static IDevice instance {
             get {
                 if (_instance == null) {
-#if !UNITY_WSA
-                    _instance = new VrgOculusTouchDevice();
-                    Debug.Log("not wsa");
-#elif UNITY_WSA
+#if UNITY_WSA
                     _instance = new VrgWinMRMotionControllerDevice();
-                    Debug.Log("wsa");
-#else
-#error "Not implemented."
-#endif
+                    Debug.Log("wsa");                    
 
-#if UNITY_EDITOR
+#elif UNITY_EDITOR
                     _instance = new CustomControllerEmulator();
                     Debug.Log("editor");
+#else
+                    _instance = new VrgOculusTouchDevice();
+                    Debug.Log("oculus");
 #endif
                 }
                 return _instance;

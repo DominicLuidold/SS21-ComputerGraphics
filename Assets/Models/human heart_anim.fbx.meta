@@ -1,14 +1,11 @@
 fileFormatVersion: 2
-guid: 1af3087d74c5b4b46b31977e826b517e
+guid: bd684321bd008f942927a2134ada653c
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable:
   - first:
       74: -1498010087492872569
-    second: Heartbeat_1
-  - first:
-      74: 3275030894342764434
-    second: Heartbeat_2
+    second: HeartBeat
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -29,22 +26,22 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: jantung 2015
-    second: {fileID: 2800000, guid: f914f6ca1c88441409878f64815387a0, type: 3}
+    second: {fileID: 2800000, guid: 5d527caf8ebf86f4f8a487371b7e537f, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: nrm_x_normals.tga
-    second: {fileID: 2800000, guid: 2e9abdf45fab26e40aaba31ebbae7282, type: 3}
+    second: {fileID: 2800000, guid: 37d9e6919f9534f4a9bc26ac20194018, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: uv artery
-    second: {fileID: 2800000, guid: 521ea44237591fc429d157bf1ad041fb, type: 3}
+    second: {fileID: 2800000, guid: 7808d89232a9a6e4eaddf4aff41cc94b, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: uv vena
-    second: {fileID: 2800000, guid: 153d04f7ae2bb0b4da56f28a44397985, type: 3}
+    second: {fileID: 2800000, guid: 55d689624238b6347907e6824c2ba12a, type: 3}
   materials:
     importMaterials: 1
     materialName: 0
@@ -73,39 +70,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Heartbeat_1
+      name: HeartBeat
       takeName: CINEMA_4D_Main
       internalID: 0
       firstFrame: 0
-      lastFrame: 29
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Heartbeat_2
-      takeName: CINEMA_4D_Main
-      internalID: 0
-      firstFrame: 30
       lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
