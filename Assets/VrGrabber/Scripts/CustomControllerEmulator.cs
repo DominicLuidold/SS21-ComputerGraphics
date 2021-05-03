@@ -24,30 +24,30 @@ namespace VrGrabber
 
         public bool GetHold(ControllerSide side)
         {
-            return Input.GetKey(KeyCode.Space);
+            return Input.GetKey(KeyCode.A);
         }
 
         public bool GetRelease(ControllerSide side)
         {
-            return Input.GetKeyUp(KeyCode.Space);
+            return Input.GetKeyUp(KeyCode.A);
         }
 
         public bool GetHover(ControllerSide side)
         {
-            return Input.GetKeyUp(KeyCode.Space);
+            return Input.GetKeyUp(KeyCode.A);
         }
 
         public bool GetClick(ControllerSide side)
         {
-            return Input.GetKey(KeyCode.Y) || Input.GetKey(KeyCode.X);
+            return Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
         }
 
         public Vector2 GetCoord(ControllerSide side)
         {
-            if(Input.GetKey(KeyCode.Y))
+            if(Input.GetKey(KeyCode.S))
             {
                 return new Vector2(0f, -1.0f);
-            } else if(Input.GetKey(KeyCode.X))
+            } else if(Input.GetKey(KeyCode.D))
             {
                 return new Vector2(0f, 1.0f);
             }

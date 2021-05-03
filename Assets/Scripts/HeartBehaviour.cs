@@ -12,10 +12,9 @@ public class HeartBehaviour : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _bloodFlowText;
     [SerializeField] private Canvas _heartCanvas;
 
-    private bool _heartBeating = true;
     private float _beatsPerMinute = 60; 
-    
     private float _animationSpeedOfOneInBps = 60f / (49f / 30f); //animation takes 49 frames at 30 FPS -> makes 60 / (49/30) bps
+    
     private readonly float _bloodPerPumpInLiters = 0.08f;
 
     private void Start()
@@ -23,28 +22,6 @@ public class HeartBehaviour : MonoBehaviour
         _beatsPerMinuteSlider.value = _beatsPerMinute;
         _beatsPerMinuteSlider.onValueChanged.AddListener(SliderChanged);
         AdjustBloodFlow();
-    }
-
-    void Update()
-    {
-        /*if(Input.GetKeyDown(KeyCode.F))
-        {
-            heartBeating = !heartBeating;
-            animator.SetBool("heartBeating", heartBeating);
-            animator.speed = 5;
-        } 
-        else if(Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            animator.ResetTrigger("playHeartBeat2");
-            animator.SetTrigger("playHeartBeat1");
-        } 
-        else if(Input.GetKeyDown(KeyCode.Keypad2)) 
-        {
-            animator.ResetTrigger("playHeartBeat1");
-            animator.SetTrigger("playHeartBeat2");
-        }*/
-
-
     }
 
     private void SliderChanged(float value)
@@ -77,8 +54,6 @@ public class HeartBehaviour : MonoBehaviour
             activity = "a maximum";
         }
        
-
-
         _bloodFlowText.SetText(
             "Currently, the heart is beating " + 
             Math.Floor(_beatsPerMinute) + 
@@ -87,7 +62,6 @@ public class HeartBehaviour : MonoBehaviour
             " liters of blood per minute through the entire body. This corresponds to " +
             activity +
             " strain on the heart.");
-
     }
 
     public void Show()
@@ -99,37 +73,5 @@ public class HeartBehaviour : MonoBehaviour
     private void OnDestroy()
     {
         _beatsPerMinuteSlider.onValueChanged.RemoveAllListeners();
-    }
-
-    public void SwitchHeartState()
-    {
-        _heartBeating = !_heartBeating;
-        _animator.SetBool("heartBeating", _heartBeating);
-    }
-
-    public void SetHeartState(bool isBeating)
-    {
-        _heartBeating = isBeating;
-        _animator.SetBool("heartBeating", _heartBeating);
-    }
-
-    public void RotateLeft()
-    {
-        transform.Rotate(Vector3.up);
-    }
-
-    public void RotateRight()
-    {
-        transform.Rotate(Vector3.down);
-    }
-
-    public void RotateUp()
-    {
-        transform.Rotate(Vector3.right);
-    }
-
-    public void RotateDown()
-    {
-        transform.Rotate(Vector3.left);
     }
 }

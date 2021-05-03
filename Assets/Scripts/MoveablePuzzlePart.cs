@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class MoveablePuzzlePart : MonoBehaviour
 {
-    [SerializeField] private PuzzleHandler puzzleHandler;
+    [SerializeField] private PuzzlePartSpawner _puzzlePartSpawner;
     private Collider _other;
     private Vector3 _initialPosition;
     private Quaternion _initialRotation;
 
     private void Start()
     {
-        _initialPosition = this.transform.position;
-        _initialRotation = this.transform.rotation;
+        _initialPosition = _puzzlePartSpawner.spawnPoint.transform.position;
+        this.transform.position = _initialPosition;
+        _initialRotation = Random.rotation;
+        this.transform.rotation = _initialRotation;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,7 +26,7 @@ public class MoveablePuzzlePart : MonoBehaviour
             Material[] newMaterials = new Material[meshRenderer.materials.Length];
             for (int i = 0; i < meshRenderer.materials.Length; i++)
             {
-                newMaterials[i] = puzzleHandler.green;
+                newMaterials[i] = _puzzlePartSpawner.puzzleHandler.green;
             }
             meshRenderer.materials = newMaterials;
         }
@@ -39,7 +41,7 @@ public class MoveablePuzzlePart : MonoBehaviour
             Material[] newMaterials = new Material[meshRenderer.materials.Length];
             for (int i = 0; i < meshRenderer.materials.Length; i++)
             {
-                newMaterials[i] = puzzleHandler.gray;
+                newMaterials[i] = _puzzlePartSpawner.puzzleHandler.gray;
             }
             meshRenderer.materials = newMaterials;
         }
@@ -49,7 +51,7 @@ public class MoveablePuzzlePart : MonoBehaviour
     {
         if(this._other != null)
         {
-            puzzleHandler.PartSolved(_other);
+            _puzzlePartSpawner.PartSolved(_other);
             Destroy(this.gameObject);
         } else
         {

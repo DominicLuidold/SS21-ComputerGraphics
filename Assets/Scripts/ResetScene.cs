@@ -7,7 +7,6 @@ public class ResetScene : MonoBehaviour
 {
     public void onReset()
     {
-        Debug.Log("reset");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
