@@ -5,6 +5,7 @@ using UnityEngine;
 public class RotateObjects : MonoBehaviour
 {
     private Collider _other;
+    private Collider _heart;
     private LayerMask _layer;
 
     private void Start()
@@ -14,7 +15,16 @@ public class RotateObjects : MonoBehaviour
 
     private void Update()
     {
-        if (_other != null)
+        Collider currentObjectToRotate = null; ;
+        if(_heart != null)
+        {
+            currentObjectToRotate = _heart;
+        }
+        else if(_other != null)
+        {
+            currentObjectToRotate = _other;
+        }
+        if (currentObjectToRotate != null)
         {
             Vector3 rotationVector = Vector3.zero;
 
@@ -47,27 +57,33 @@ public class RotateObjects : MonoBehaviour
 #endif
 
             if (!rotationVector.Equals(Vector3.zero))
-            {
-                
-                _other.transform.RotateAround(_other.transform.position, rotationVector, 90 * Time.deltaTime);
+            {      
+                currentObjectToRotate.transform.RotateAround(currentObjectToRotate.transform.position, rotationVector, 90 * Time.deltaTime);
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == _layer)
+        if (other.name.Equals("human heart_anim") || other.name.Equals("human_heart_pieces"))
         {
-            Debug.Log("equals");
-        } else
-        {
-            Debug.Log("not equal");
+            _heart = other;
         }
-        _other = other;
+        else if(other.gameObject.layer == _layer)
+        {
+            _other = other;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        _other = null;
+        if (other.name.Equals("human heart_anim") || other.name.Equals("human_heart_pieces"))
+        {
+            _heart = null;
+        }
+        else if (other.gameObject.layer == _layer)
+        {
+            _other = null;
+        }
     }
 }

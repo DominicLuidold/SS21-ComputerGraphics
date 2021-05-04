@@ -7,14 +7,12 @@ public class MoveablePuzzlePart : MonoBehaviour
     [SerializeField] private PuzzlePartSpawner _puzzlePartSpawner;
     private Collider _other;
     private Vector3 _initialPosition;
-    private Quaternion _initialRotation;
 
     private void Start()
     {
         _initialPosition = _puzzlePartSpawner.spawnPoint.transform.position;
         this.transform.position = _initialPosition;
-        _initialRotation = gameObject.transform.rotation; //Random.rotation;
-        this.transform.rotation = _initialRotation;
+        this.transform.rotation = Random.rotation;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -56,7 +54,6 @@ public class MoveablePuzzlePart : MonoBehaviour
         } else
         {
             this.transform.position = _initialPosition;
-            this.transform.rotation = _initialRotation;
         }
     }
 }
