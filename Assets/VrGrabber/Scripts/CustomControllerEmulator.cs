@@ -2,7 +2,7 @@
 
 namespace VrGrabber
 {
-    //class is same as VrgOculusTouchDevice but for unity editor using button A for Grab, S for pulling grabbed object and D for pushing grabbed object
+    //class is same as VrgOculusTouchDevice but for unity editor using Space for Grab, Y for pulling grabbed object and X for pushing grabbed object
     public class CustomControllerEmulator : IDevice
     {
         private OVRInput.Controller GetOVRController(ControllerSide side)
@@ -24,30 +24,30 @@ namespace VrGrabber
 
         public bool GetHold(ControllerSide side)
         {
-            return Input.GetKey(KeyCode.A);
+            return Input.GetKey(KeyCode.Space);
         }
 
         public bool GetRelease(ControllerSide side)
         {
-            return Input.GetKeyUp(KeyCode.A);
+            return Input.GetKeyUp(KeyCode.Space);
         }
 
         public bool GetHover(ControllerSide side)
         {
-            return Input.GetKeyUp(KeyCode.A);
+            return Input.GetKeyUp(KeyCode.Space);
         }
 
         public bool GetClick(ControllerSide side)
         {
-            return Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
+            return Input.GetKey(KeyCode.Y) || Input.GetKey(KeyCode.X);
         }
 
         public Vector2 GetCoord(ControllerSide side)
         {
-            if(Input.GetKey(KeyCode.S))
+            if(Input.GetKey(KeyCode.Y))
             {
                 return new Vector2(0f, -1.0f);
-            } else if(Input.GetKey(KeyCode.D))
+            } else if(Input.GetKey(KeyCode.X))
             {
                 return new Vector2(0f, 1.0f);
             }

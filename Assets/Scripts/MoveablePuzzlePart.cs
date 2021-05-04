@@ -13,7 +13,7 @@ public class MoveablePuzzlePart : MonoBehaviour
     {
         _initialPosition = _puzzlePartSpawner.spawnPoint.transform.position;
         this.transform.position = _initialPosition;
-        _initialRotation = Random.rotation;
+        _initialRotation = gameObject.transform.rotation; //Random.rotation;
         this.transform.rotation = _initialRotation;
     }
 
