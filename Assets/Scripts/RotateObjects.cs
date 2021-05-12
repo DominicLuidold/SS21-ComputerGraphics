@@ -29,22 +29,26 @@ public class RotateObjects : MonoBehaviour
             Vector3 rotationVector = Vector3.zero;
 
 #if UNITY_EDITOR
-            if (Input.GetKey(KeyCode.W))
+            if(!Input.GetKey(KeyCode.Space)) //only rotate when not holding space -> not dragging any object
             {
-                rotationVector = Vector3.right;
+                if (Input.GetKey(KeyCode.W))
+                {
+                    rotationVector = Vector3.right;
+                }
+                else if (Input.GetKey(KeyCode.A))
+                {
+                    rotationVector = Vector3.up;
+                }
+                else if (Input.GetKey(KeyCode.S))
+                {
+                    rotationVector = Vector3.left;
+                }
+                else if (Input.GetKey(KeyCode.D))
+                {
+                    rotationVector = Vector3.down;
+                }
             }
-            else if (Input.GetKey(KeyCode.A))
-            {
-                rotationVector = Vector3.up;
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                rotationVector = Vector3.left;
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                rotationVector = Vector3.down;
-            }
+            
 
 #else
             // only rotate when not holding PrimaryIndexTrigger since you use the touchpad for pulling and pulling an grabed object

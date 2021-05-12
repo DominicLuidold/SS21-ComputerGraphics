@@ -10,25 +10,13 @@
 
     SubShader
     {
-        Tags { "RenderType" = "Opaque" }
-        LOD 250
+        Tags { "RenderType" = "Opaque"  }
         Cull Off
-
-
+        
         CGPROGRAM
-        #pragma surface surf MobileBlinnPhong noforwardadd nolightmap noforwardadd
+        #pragma surface surf Lambert noforwardadd nolightmap noforwardadd 
+        #pragma target 3.0
 
-        inline fixed4 LightingMobileBlinnPhong(SurfaceOutput s, fixed3 lightDir, fixed3 halfDir, fixed atten)
-        {
-            fixed diff = max(0, dot(s.Normal, lightDir));
-            fixed nh = max(0, dot(s.Normal, halfDir));
-            fixed spec = pow(nh, s.Specular * 128) * s.Gloss;
-
-            fixed4 c;
-            c.rgb = (s.Albedo * _LightColor0.rgb * diff + _LightColor0.rgb * spec) * atten;
-            UNITY_OPAQUE_ALPHA(c.a);
-            return c;
-        }
 
         sampler2D _MainTex;
         sampler2D _BumpMap;
@@ -38,11 +26,11 @@
         struct Input {
             float2 uv_MainTex;
         };
-
+         
         void surf(Input IN, inout SurfaceOutput o) {
             fixed4 c = tex2D(_MainTex, IN.uv_MainTex);
             o.Albedo = c.rgb;
-            o.Alpha = c.a;
+            clip(c.a - 0.01);
             o.Gloss = _Glossiness;
             o.Specular = _Specular;
             o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_MainTex));
