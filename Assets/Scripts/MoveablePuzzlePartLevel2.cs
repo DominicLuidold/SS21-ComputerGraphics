@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class MoveablePuzzlePartLevel2 : MonoBehaviour
 {
     private Collider _other;
     [SerializeField] public PuzzleHandler puzzleHandler;
+    [SerializeField] private Toaster _toaster;
+    private Material _currentMaterial;
+    private Transform _otherParentTransform;
+    private MeshRenderer _otherMeshRenderer;
 
     void Start()
     {
@@ -16,19 +20,33 @@ public class MoveablePuzzlePartLevel2 : MonoBehaviour
     {
         if (other.name.Equals(this.name))
         {
-            Transform otherParentTransform = other.GetComponentInParent<Transform>(); //since rotation on other is based on the total rotation of the heart
-            if(Quaternion.Angle(otherParentTransform.rotation, this.transform.rotation) < 40)
-            {
-                this._other = other;
-                MeshRenderer meshRenderer = other.GetComponent<MeshRenderer>();
-                Material[] newMaterials = new Material[meshRenderer.materials.Length];
-                for (int i = 0; i < meshRenderer.materials.Length; i++)
-                {
-                    newMaterials[i] = puzzleHandler.green;
-                }
-                meshRenderer.materials = newMaterials;
-            }
+            _otherParentTransform = other.GetComponentInParent<Transform>(); //since rotation on other is based on the total rotation of the surrounding heart component
+            _otherMeshRenderer = other.GetComponent<MeshRenderer>();
+            this._other = other;
         }
+    }
+
+    void Update()
+    {
+        if(_other)
+        {
+            if (Quaternion.Angle(_otherParentTransform.rotation, this.transform.rotation) < 40)
+            {
+                _currentMaterial = puzzleHandler.green;
+            }
+            else
+            {
+                _currentMaterial = puzzleHandler.orange;
+            }
+
+            Material[] newMaterials = new Material[_otherMeshRenderer.materials.Length];
+            for (int i = 0; i < _otherMeshRenderer.materials.Length; i++)
+            {
+                newMaterials[i] = _currentMaterial;
+            }
+            _otherMeshRenderer.materials = newMaterials;
+        } 
+            
     }
 
     private void OnTriggerExit(Collider other)
@@ -36,13 +54,12 @@ public class MoveablePuzzlePartLevel2 : MonoBehaviour
         if (other.name.Equals(this.name))
         {
             this._other = null;
-            MeshRenderer meshRenderer = other.GetComponent<MeshRenderer>();
-            Material[] newMaterials = new Material[meshRenderer.materials.Length];
-            for (int i = 0; i < meshRenderer.materials.Length; i++)
+            Material[] newMaterials = new Material[_otherMeshRenderer.materials.Length];
+            for (int i = 0; i < _otherMeshRenderer.materials.Length; i++)
             {
                 newMaterials[i] = puzzleHandler.gray;
             }
-            meshRenderer.materials = newMaterials;
+            _otherMeshRenderer.materials = newMaterials;
         }
     }
 
@@ -50,8 +67,19 @@ public class MoveablePuzzlePartLevel2 : MonoBehaviour
     {
         if (this._other != null)
         {
-            puzzleHandler.PartSolved(_other);
-            Destroy(this.gameObject);
+            if(puzzleHandler.getCurrentPart().ToString().Equals(_other.name))
+            {
+                puzzleHandler.PartSolved(_other);
+                Destroy(this.gameObject);
+            } else if(_currentMaterial.name == puzzleHandler.orange.name)
+            {
+                _toaster.ShowToast("Try to rotate the" + _other.name + " into correct position.\nIt would ruin the blood flow...");
+            }
+            else
+            {
+                _toaster.ShowToast("The " + _other.name + " should not be added to the heart now.\nIt would confuse the heart...");
+            }
+            
         }
     }
 }

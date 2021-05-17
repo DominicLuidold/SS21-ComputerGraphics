@@ -6,14 +6,18 @@ public class PuzzleHandler : MonoBehaviour
 {
     [SerializeField] public Material green;
     [SerializeField] public Material gray;
+    [SerializeField] public Material orange;
     [SerializeField] private HeartBehaviour _animatedHeart;
     public enum Parts { Aorta = 0, LeftChamber = 1, RightChamber = 2, LungArteria = 3 };
     private int _partsSolved = 0;
     private Material[][] _initialMaterials = new Material[4][];
-
+    private Parts _currentPart;
+    private int _currentIndex;
     public void GrayComponents()
     {
         string[] names = System.Enum.GetNames(typeof(Parts));
+        _currentIndex = 0;
+        _currentPart = 0;
         Transform[] transforms = new Transform[names.Length];
         for (int i = 0; i < names.Length; i++)
         {
@@ -38,31 +42,29 @@ public class PuzzleHandler : MonoBehaviour
 
     public void PartSolved(Collider part)
     {
-        MeshRenderer meshRenderer = part.GetComponent<MeshRenderer>();
-        switch(part.name)
+        try
         {
-            case "Aorta":
-                meshRenderer.materials = _initialMaterials[(int)Parts.Aorta];
-                break;
-
-            case "LeftChamber":
-                meshRenderer.materials = _initialMaterials[(int)Parts.LeftChamber];
-                break;
-
-            case "RightChamber":
-                meshRenderer.materials = _initialMaterials[(int)Parts.RightChamber];
-                break;
-
-            case "LungArteria":
-                meshRenderer.materials = _initialMaterials[(int)Parts.LungArteria];
-                break;
-        }
-        _partsSolved++;
-        if(_partsSolved == 4)
+            Parts currentPart = (Parts)System.Enum.Parse(typeof(Parts), part.name);
+            MeshRenderer meshRenderer = part.GetComponent<MeshRenderer>();
+            meshRenderer.materials = _initialMaterials[(int)currentPart];
+            
+            _partsSolved++;
+            if (_partsSolved == 4)
+            {
+                this._animatedHeart.Show();
+                Destroy(this.gameObject);
+            }
+            _currentIndex++;
+            _currentPart = (Parts)_currentIndex;
+        } catch (System.Exception)
         {
-            this._animatedHeart.Show();
-            Destroy(this.gameObject);
+            Debug.Log("exceptioneeee");
+            //should never be called!
         }
-        
+    }
+
+    public Parts getCurrentPart()
+    {
+        return _currentPart;
     }
 }
