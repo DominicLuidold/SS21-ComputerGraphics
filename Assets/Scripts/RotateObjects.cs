@@ -69,7 +69,7 @@ public class RotateObjects : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Equals("human heart_anim") || other.name.Equals("human_heart_pieces"))
+        if (other.name.Contains("human heart_anim") || other.name.Contains("human_heart_pieces"))
         {
             _heart = other;
         }
@@ -81,7 +81,7 @@ public class RotateObjects : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.name.Equals("human heart_anim") || other.name.Equals("human_heart_pieces"))
+        if (other.name.Contains("human heart_anim") || other.name.Contains("human_heart_pieces"))
         {
             _heart = null;
         }
