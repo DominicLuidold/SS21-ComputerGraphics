@@ -8,6 +8,7 @@ public class PuzzleHandler : MonoBehaviour
     [SerializeField] public Material gray;
     [SerializeField] public Material orange;
     [SerializeField] private HeartBehaviour _animatedHeart;
+    [SerializeField] private ScoreBoard _scoreBoard;
     public enum Parts { Aorta = 0, LeftChamber = 1, RightChamber = 2, LungArteria = 3 };
     private int _partsSolved = 0;
     private Material[][] _initialMaterials = new Material[4][];
@@ -38,6 +39,8 @@ public class PuzzleHandler : MonoBehaviour
             }
             meshRenderer.materials = newMaterials;
         }
+
+        this._scoreBoard.StartTime();
     }
 
     public void PartSolved(Collider part)
@@ -52,10 +55,16 @@ public class PuzzleHandler : MonoBehaviour
             if (_partsSolved == 4)
             {
                 this._animatedHeart.Show();
+                this._scoreBoard.FinishLevel();
                 Destroy(this.gameObject);
+            } else
+            {
+                this._scoreBoard.FinishPuzzlePart(part.name);
             }
             _currentIndex++;
             _currentPart = (Parts)_currentIndex;
+
+            
         } catch (System.Exception)
         {
             Debug.Log("exceptioneeee");
