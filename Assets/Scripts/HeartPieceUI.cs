@@ -23,6 +23,7 @@ public class HeartPieceUI : MonoBehaviour
         //_text.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
         _text.SetText(description);
         _text.color = Color.black;
+        _text.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 200);
         this._rectTransform = canvasGO.GetComponent<RectTransform>();
     }
 

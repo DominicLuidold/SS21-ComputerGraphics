@@ -1099,7 +1099,6 @@ GameObject:
   - component: {fileID: 437255994}
   - component: {fileID: 437255992}
   - component: {fileID: 437255991}
-  - component: {fileID: 437255990}
   - component: {fileID: 437255993}
   m_Layer: 9
   m_Name: Aorta
@@ -1122,20 +1121,6 @@ Transform:
   m_Father: {fileID: 1519589128}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &437255990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 437255988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 813b4c6745e21664a9c314ac03f3bc69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: aorta test
-  cam: {fileID: 1406262037}
 --- !u!114 &437255991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5742,7 +5727,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 813b4c6745e21664a9c314ac03f3bc69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: aorta test
+  description: The aorta supplies all of the systemic circulation. The entire body
+    receives its blood from the aorta.
   cam: {fileID: 1406262037}
 --- !u!1 &3633712841742355838
 GameObject:
@@ -5760,6 +5746,7 @@ GameObject:
   - component: {fileID: 797009205}
   - component: {fileID: 797009207}
   - component: {fileID: 797009208}
+  - component: {fileID: 3633712841742355839}
   m_Layer: 9
   m_Name: RightChamber
   m_TagString: Untagged
@@ -5767,6 +5754,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &3633712841742355839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3633712841742355838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813b4c6745e21664a9c314ac03f3bc69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: The right heart consists of two chambers, the right atrium and the
+    right ventricle, separated by a valve, the tricuspid valve.
+  cam: {fileID: 1406262037}
 --- !u!1 &4568429299992309962
 GameObject:
   m_ObjectHideFlags: 0
@@ -5783,6 +5785,7 @@ GameObject:
   - component: {fileID: 573442859}
   - component: {fileID: 573442861}
   - component: {fileID: 573442862}
+  - component: {fileID: 4568429299992309963}
   m_Layer: 9
   m_Name: LeftChamber
   m_TagString: Untagged
@@ -5790,6 +5793,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &4568429299992309963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4568429299992309962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813b4c6745e21664a9c314ac03f3bc69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 'The left heart has two chambers: the left atrium and the left ventricle,
+    separated by the mitral valve.'
+  cam: {fileID: 1406262037}
 --- !u!33 &4812292275953419870
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5814,6 +5832,7 @@ GameObject:
   - component: {fileID: 333963716}
   - component: {fileID: 333963718}
   - component: {fileID: 333963719}
+  - component: {fileID: 5964383080419965277}
   m_Layer: 9
   m_Name: LungArteria
   m_TagString: Untagged
@@ -5821,6 +5840,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &5964383080419965277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5964383080419965276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813b4c6745e21664a9c314ac03f3bc69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: The pulmonary artery carries deoxygenated blood from the right ventricle
+    to the lungs.
+  cam: {fileID: 1406262037}
 --- !u!23 &6055631925248811087
 MeshRenderer:
   m_ObjectHideFlags: 0
