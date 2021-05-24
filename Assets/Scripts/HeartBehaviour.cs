@@ -58,7 +58,7 @@ public class HeartBehaviour : MonoBehaviour
             "Currently, the heart is beating " + 
             Math.Floor(_beatsPerMinute) + 
             " times per minute. It is pumping " + 
-            String.Format("{0:0.00}", (_bloodPerPumpInLiters * _beatsPerMinute)) +
+            String.Format("{0:0.00}", (_bloodPerPumpInLiters * _beatsPerMinute)).Replace(",", ".") +
             " liters of blood per minute through the entire body. This corresponds to " +
             activity +
             " strain on the heart.");

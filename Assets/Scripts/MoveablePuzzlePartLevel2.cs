@@ -10,10 +10,13 @@ public class MoveablePuzzlePartLevel2 : MonoBehaviour
     private Material _currentMaterial;
     private Transform _otherParentTransform;
     private MeshRenderer _otherMeshRenderer;
+    private readonly float _angle = 40; //maximum angle of rotation
+    private Vector3 _initialPosition;
 
     void Start()
     {
         this.transform.rotation = Random.rotation;
+        _initialPosition = this.transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,7 +33,7 @@ public class MoveablePuzzlePartLevel2 : MonoBehaviour
     {
         if(_other)
         {
-            if (Quaternion.Angle(_otherParentTransform.rotation, this.transform.rotation) < 40)
+            if (Quaternion.Angle(_otherParentTransform.rotation, this.transform.rotation) < _angle)
             {
                 _currentMaterial = puzzleHandler.green;
             }
@@ -67,19 +70,28 @@ public class MoveablePuzzlePartLevel2 : MonoBehaviour
     {
         if (this._other != null)
         {
+ 
             if(puzzleHandler.getCurrentPart().ToString().Equals(_other.name))
             {
-                puzzleHandler.PartSolved(_other);
-                Destroy(this.gameObject);
+                if(Quaternion.Angle(_otherParentTransform.rotation, this.transform.rotation) < _angle)
+                {
+                    puzzleHandler.PartSolved(_other);
+                    Destroy(this.gameObject);
+                }
             } else if(_currentMaterial.name == puzzleHandler.orange.name)
             {
-                _toaster.ShowToast("Try to rotate the" + _other.name + " into correct position.\nIt would ruin the blood flow...");
+                _toaster.ShowToast("Try to rotate the " + puzzleHandler.getPartName(_other.name) + " into correct position.\nIt would ruin the blood flow...");
             }
             else
             {
-                _toaster.ShowToast("The " + _other.name + " should not be added to the heart now.\nIt would confuse the heart...");
+                _toaster.ShowToast("The " + puzzleHandler.getPartName(_other.name) + " should not be added to the heart now.\nIt would confuse the heart...");
             }
             
         }
+    }
+
+    public void OnResetPosition()
+    {
+        this.transform.position = _initialPosition;
     }
 }

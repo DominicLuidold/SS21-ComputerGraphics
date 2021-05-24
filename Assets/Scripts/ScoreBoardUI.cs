@@ -16,7 +16,7 @@ public class ScoreBoardUI : MonoBehaviour
     void Update()
     {
         // TODO - Doesn't work?
-        Vector3 vec = _rectTransform.position - cam.transform.position;
-        _rectTransform.rotation = Quaternion.LookRotation(vec, Vector3.up);
+        //Vector3 vec = _rectTransform.position - cam.transform.position;
+        //_rectTransform.rotation = Quaternion.LookRotation(vec, Vector3.up);
     }
 }

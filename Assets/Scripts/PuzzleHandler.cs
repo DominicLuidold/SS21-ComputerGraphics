@@ -9,7 +9,7 @@ public class PuzzleHandler : MonoBehaviour
     [SerializeField] public Material orange;
     [SerializeField] private HeartBehaviour _animatedHeart;
     [SerializeField] private ScoreBoard _scoreBoard;
-    public enum Parts { Aorta = 0, LeftChamber = 1, RightChamber = 2, LungArteria = 3 };
+    public enum Parts { RightChamber = 0, LungArteria = 1, LeftChamber = 2, Aorta = 3 };
     private int _partsSolved = 0;
     private Material[][] _initialMaterials = new Material[4][];
     private Parts _currentPart;
@@ -59,7 +59,7 @@ public class PuzzleHandler : MonoBehaviour
                 Destroy(this.gameObject);
             } else
             {
-                this._scoreBoard.FinishPuzzlePart(part.name);
+                this._scoreBoard.FinishPuzzlePart(getPartName(part.name));
             }
             _currentIndex++;
             _currentPart = (Parts)_currentIndex;
@@ -67,8 +67,8 @@ public class PuzzleHandler : MonoBehaviour
             
         } catch (System.Exception)
         {
-            Debug.Log("exceptioneeee");
-            //should never be called!
+            Debug.Log("exception");
+            //should never be called since the parts are the same name as Enum!
         }
     }
 
@@ -76,4 +76,35 @@ public class PuzzleHandler : MonoBehaviour
     {
         return _currentPart;
     }
+
+    public string getPartName(string part)
+    {
+        switch(part)
+        {
+            case nameof(Parts.RightChamber):
+                {
+                    return "Right Chamber";
+                }
+
+            case nameof(Parts.LungArteria):
+                {
+                    return "Lung Arteria";
+                }
+
+            case nameof(Parts.LeftChamber):
+                {
+                    return "Left Chamber";
+                }
+
+            case nameof(Parts.Aorta):
+                {
+                    return "Aorta";
+                }
+
+
+            default: return "";
+        }
+    }
+
+    
 }

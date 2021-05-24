@@ -5,7 +5,7 @@ using TMPro;
 
 public class Toaster : MonoBehaviour
 {
-    private float _toasterShowingTime = 3;
+    private float _toasterShowingTime = 5;
     [SerializeField] private TextMeshProUGUI _toaster;
     private float _toasterTime;
 

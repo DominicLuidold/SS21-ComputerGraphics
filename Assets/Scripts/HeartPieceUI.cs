@@ -23,6 +23,7 @@ public class HeartPieceUI : MonoBehaviour
         //_text.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
         _text.SetText(description);
         _text.color = Color.black;
+        //_text.fontSize = 12;
         _text.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 200);
         this._rectTransform = canvasGO.GetComponent<RectTransform>();
     }
@@ -38,7 +39,7 @@ public class HeartPieceUI : MonoBehaviour
         Vector3 vec = _rectTransform.position - cam.transform.position;
         _rectTransform.rotation = Quaternion.LookRotation(vec, Vector3.up);
         Vector3 pos = this.gameObject.transform.position;
-        pos = new Vector3(pos.x + 2, pos.y + 2, pos.z);
+        pos = new Vector3(pos.x + 6, pos.y + 2, pos.z);
         _rectTransform.position = pos;
         //rectTransform = _text.GetComponent<RectTransform>();
         //rectTransform.LookAt(cam.transform.position);
