@@ -40,7 +40,7 @@ public class PuzzleHandler : MonoBehaviour
             meshRenderer.materials = newMaterials;
         }
 
-        this._scoreBoard.StartTime();
+        this._scoreBoard.StartTime(); //start score board time when components are grayed out
     }
 
     public void PartSolved(Collider part)
@@ -59,7 +59,7 @@ public class PuzzleHandler : MonoBehaviour
                 Destroy(this.gameObject);
             } else
             {
-                this._scoreBoard.FinishPuzzlePart(getPartName(part.name));
+                this._scoreBoard.FinishPuzzlePart(GetPartName(part.name));
             }
             _currentIndex++;
             _currentPart = (Parts)_currentIndex;
@@ -68,16 +68,16 @@ public class PuzzleHandler : MonoBehaviour
         } catch (System.Exception)
         {
             Debug.Log("exception");
-            //should never be called since the parts are the same name as Enum!
+            //should never be called since the parts are the same name as Parts enum!
         }
     }
 
-    public Parts getCurrentPart()
+    public Parts GetCurrentPart()
     {
         return _currentPart;
     }
 
-    public string getPartName(string part)
+    public string GetPartName(string part)
     {
         switch(part)
         {

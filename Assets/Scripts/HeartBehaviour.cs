@@ -7,7 +7,7 @@ using TMPro;
 
 public class HeartBehaviour : MonoBehaviour
 {
-    [SerializeField] private Animator _animator;
+    [SerializeField] private Animator _animator; //heart
     [SerializeField] private Slider _beatsPerMinuteSlider;
     [SerializeField] private TextMeshProUGUI _bloodFlowText;
     [SerializeField] private Canvas _heartCanvas;

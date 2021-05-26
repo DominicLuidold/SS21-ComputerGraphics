@@ -17,11 +17,11 @@ public class PuzzlePartSpawner : MonoBehaviour
         {
             _childs[i] = transform.Find(names[i]);
         }
-        _childs[0].gameObject.SetActive(true);
+        _childs[0].gameObject.SetActive(true); //set first part to active
     }
 
 
-    public void PartSolved(Collider other)
+    public void PartSolved(Collider other) //call puzzleHandler and set next ppart to active
     {
         _counter++;
         puzzleHandler.PartSolved(other);

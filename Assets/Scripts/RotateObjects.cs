@@ -15,7 +15,7 @@ public class RotateObjects : MonoBehaviour
 
     private void Update()
     {
-        Collider currentObjectToRotate = null; ;
+        Collider currentObjectToRotate = null;
         if(_heart != null)
         {
             currentObjectToRotate = _heart;
@@ -69,7 +69,7 @@ public class RotateObjects : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Contains("human heart_anim") || other.name.Contains("human_heart_pieces"))
+        if (other.name.Contains("human heart_anim") || other.name.Contains("human_heart_pieces")) //the heart has the highest priority when rotating
         {
             _heart = other;
         }
@@ -89,5 +89,11 @@ public class RotateObjects : MonoBehaviour
         {
             _other = null;
         }
+    }
+
+    public void Reset() //Resets everything in case an object gets set to inactive
+    {
+        _heart = null;
+        _other = null;
     }
 }

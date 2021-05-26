@@ -25,7 +25,7 @@ public class VrgOculusTouchDevice : IDevice
 
     public bool GetHold(ControllerSide side)
     {
-        return OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger);
+        return OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger);
     }
 
     public bool GetRelease(ControllerSide side)

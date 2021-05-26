@@ -17,7 +17,7 @@ public class MoveablePuzzlePart : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.name.Equals(this.name))
+        if(other.name.Equals(this.name)) // mark with green material
         {
             this._other = other;
             MeshRenderer meshRenderer = other.GetComponent<MeshRenderer>();
@@ -32,7 +32,7 @@ public class MoveablePuzzlePart : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.name.Equals(this.name))
+        if(other.name.Equals(this.name)) // mark with gray material again
         {
             this._other = null;
             MeshRenderer meshRenderer = other.GetComponent<MeshRenderer>();
@@ -47,7 +47,7 @@ public class MoveablePuzzlePart : MonoBehaviour
 
     public void OnReleased()
     {
-        if(this._other != null)
+        if(this._other != null) // solve this part and destroy it, otherwise put it back to initial position
         {
             _puzzlePartSpawner.PartSolved(_other);
             Destroy(this.gameObject);

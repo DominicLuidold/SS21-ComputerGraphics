@@ -8,7 +8,7 @@ public class StartingVideoPlayer : MonoBehaviour
 {
     [SerializeField] private VideoPlayer _videoPlayer;
 
-    public UnityEvent startingVideoFinished = new UnityEvent();
+    public UnityEvent startingVideoFinished = new UnityEvent(); //event when the starting (dimension change tunnel) video has finished
 
     void Start()
     {

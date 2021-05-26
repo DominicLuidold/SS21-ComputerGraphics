@@ -21,7 +21,7 @@ public class MoveablePuzzlePartLevel2 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Equals(this.name))
+        if (other.name.Equals(this.name)) //assign _other variable for Update() method
         {
             _otherParentTransform = other.GetComponentInParent<Transform>(); //since rotation on other is based on the total rotation of the surrounding heart component
             _otherMeshRenderer = other.GetComponent<MeshRenderer>();
@@ -33,11 +33,11 @@ public class MoveablePuzzlePartLevel2 : MonoBehaviour
     {
         if(_other)
         {
-            if (Quaternion.Angle(_otherParentTransform.rotation, this.transform.rotation) < _angle)
+            if (Quaternion.Angle(_otherParentTransform.rotation, this.transform.rotation) < _angle) // mark with green material if angle is correct
             {
                 _currentMaterial = puzzleHandler.green;
             }
-            else
+            else // mark with orange material if angle is not correct but part is in the right spot
             {
                 _currentMaterial = puzzleHandler.orange;
             }
@@ -54,7 +54,7 @@ public class MoveablePuzzlePartLevel2 : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.name.Equals(this.name))
+        if (other.name.Equals(this.name)) // mark with gray material
         {
             this._other = null;
             Material[] newMaterials = new Material[_otherMeshRenderer.materials.Length];
@@ -71,26 +71,23 @@ public class MoveablePuzzlePartLevel2 : MonoBehaviour
         if (this._other != null)
         {
  
-            if(puzzleHandler.getCurrentPart().ToString().Equals(_other.name))
+            if(puzzleHandler.GetCurrentPart().ToString().Equals(_other.name) && Quaternion.Angle(_otherParentTransform.rotation, this.transform.rotation) < _angle) //part is solved if it is on the right spot and has correct rotation
             {
-                if(Quaternion.Angle(_otherParentTransform.rotation, this.transform.rotation) < _angle)
-                {
-                    puzzleHandler.PartSolved(_other);
-                    Destroy(this.gameObject);
-                }
-            } else if(_currentMaterial.name == puzzleHandler.orange.name)
+                puzzleHandler.PartSolved(_other);
+                Destroy(this.gameObject);
+            } else if(_currentMaterial.name == puzzleHandler.orange.name) //show toast message if part is not rotated right or if it is added in wrong order
             {
-                _toaster.ShowToast("Try to rotate the " + puzzleHandler.getPartName(_other.name) + " into correct position.\nIt would ruin the blood flow...");
+                _toaster.ShowToast("Try to rotate the " + puzzleHandler.GetPartName(_other.name) + " into correct position.\nOtherwise it would ruin the blood flow...");
             }
             else
             {
-                _toaster.ShowToast("The " + puzzleHandler.getPartName(_other.name) + " should not be added to the heart now.\nIt would confuse the heart...");
+                _toaster.ShowToast("The " + puzzleHandler.GetPartName(_other.name) + " should not be added to the heart now.\nOtherwise it would confuse the heart...");
             }
             
         }
     }
 
-    public void OnResetPosition()
+    public void OnResetPosition() // put back into initial position (is called by the Reset Puzzle Parts Button) 
     {
         this.transform.position = _initialPosition;
     }
